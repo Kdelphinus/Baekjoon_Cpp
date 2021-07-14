@@ -1,0 +1,19 @@
+/**
+ * @file 06. A-B.cpp
+ * @author Kdelphinus (delphinus@khu.ac.kr)
+ * @brief 
+ * @date 2021-07-14 22:55:39
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a, b;
+    cin >> a >> b;
+    cout << a - b;
+    return 0;
+}
