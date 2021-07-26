@@ -1,7 +1,7 @@
 /**
  * @file 03. counting sort.cpp
  * @author Kdelphinus (delphinus@khu.ac.kr)
- * @brief 
+ * @brief cin, cout보다 scanf, printf가 빠르다
  * @date 2021-07-26 10:33:46
  * 
  * @copyright Copyright (c) 2021
