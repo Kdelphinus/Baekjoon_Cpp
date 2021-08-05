@@ -13,10 +13,10 @@
 
 using namespace std;
 
-vector<vector<int>> dp(101, vector<int>(10, 0));
-int mod = 1000000000;
+vector<vector<long long>> dp(101, vector<long long>(10, 0));
+long long mod = 1000000000;
 
-int number_of_stairs(int num)
+long long number_of_stairs(int num)
 {
     for (int i = 1; i <= 9; i++) // 한 자리 숫자들은 모두 계단 수이다
         dp[1][i] = 1;
@@ -34,7 +34,11 @@ int number_of_stairs(int num)
         }
     }
 
-    return accumulate(dp[num].begin(), dp[num].end(), 0) % mod; // 벡터의 합을 리턴하는 함수
+    long long sum = 0;
+    for (int i = 0; i <= 9; i++)
+        sum += dp[num][i] % mod;
+
+    return sum % mod; // 벡터의 합을 리턴하는 함수
 }
 
 int main()
