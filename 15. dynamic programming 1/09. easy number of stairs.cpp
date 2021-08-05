@@ -38,7 +38,7 @@ long long number_of_stairs(int num)
     for (int i = 0; i <= 9; i++)
         sum += dp[num][i] % mod;
 
-    return sum % mod; // 벡터의 합을 리턴하는 함수
+    return sum % mod; // 벡터의 합을 리턴하는 함수는 왠지 모르겠으나 틀렸다 나옴
 }
 
 int main()
