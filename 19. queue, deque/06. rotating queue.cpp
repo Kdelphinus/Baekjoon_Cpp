@@ -1,6 +1,16 @@
+/**
+ * @file 06. rotating queue.cpp
+ * @author Kdelphinus (delphinus@khu.ac.kr)
+ * @brief 
+ * @date 2021-08-19 21:52:58
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #include <iostream>
 #include <deque>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -17,15 +27,15 @@ int rotating(int num, int target_num)
 
     for (int idx = 0; idx < target_num; idx++)
     {
-        if (target[idx] == dq.front())
+        if (target[idx] == dq.front()) // 현재 뽑을 수가 가장 앞에 있으면
             dq.pop_front();
-        else
+        else // 아니라면
         {
-            target_idx = lower_bound(dq.begin(), dq.end(), target[idx]) - dq.begin();
-            size = dq.size();
-            if (size / 2 >= target_idx)
+            target_idx = find(dq.begin(), dq.end(), target[idx]) - dq.begin(); // 뽑을 수의 위치
+            size = dq.size();                                                  // 현재 덱의 크기
+            if (size / 2 >= target_idx)                                        // 뽑을 수가 덱의 중간이거나 왼쪽에 있다면
             {
-                while (1)
+                while (1) // 뽑을 때까지 앞의 수를 뒤로 넘겨준다
                 {
                     if (target[idx] == dq.front())
                     {
@@ -38,9 +48,9 @@ int rotating(int num, int target_num)
                     cnt++;
                 }
             }
-            else
+            else // 뽑을 수가 중간보다 오른쪽에 있다면
             {
-                while (1)
+                while (1) // 뽑을 때까지 뒤의 수를 앞으로 넘겨준다
                 {
                     if (target[idx] == dq.front())
                     {
@@ -54,7 +64,6 @@ int rotating(int num, int target_num)
                 }
             }
         }
-        idx++;
     }
 
     return cnt;
