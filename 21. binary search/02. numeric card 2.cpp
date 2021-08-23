@@ -30,7 +30,27 @@ void bs(int tmp, int start, int end)
     else // 중간값과 같다면 개수를 추가하고 오른쪽과 왼쪽 모두 확인
     {
         cnt++;
-        bs(tmp, start, mid - 1), bs(tmp, mid + 1, end);
+        int start_point = mid - 1;
+        int end_point = mid + 1;
+        while (1)
+        {
+            int flag = 1;
+            if (start_point >= 0 && standard[start_point] == tmp)
+            {
+                flag = 0;
+                cnt++;
+                start_point--;
+            }
+            if (end_point < standard.size() && standard[end_point] == tmp)
+            {
+                flag = 0;
+                cnt++;
+                end_point++;
+            }
+
+            if (flag)
+                return;
+        }
     }
 }
 
