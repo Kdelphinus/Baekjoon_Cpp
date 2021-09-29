@@ -1,1 +1,3 @@
-# Baekjoon_Cpp
+# C++
+- Baekjoon: 백준 문제
+- 여러 기능들: C++의 여러 기능들

@@ -35,4 +35,8 @@
 *.out
 *.app
 
+# 내가 추가한 것
+/.vscode
+practice.cpp
+
 # End of https://www.toptal.com/developers/gitignore/api/c++
