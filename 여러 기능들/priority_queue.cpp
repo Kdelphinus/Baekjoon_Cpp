@@ -46,5 +46,25 @@ int main()
         min_q.pop();
     }
     // 1, 2, 3, 4, 5, 7, 8, 9, 11, 작은 순서대로 출력됨
+
+    // -------------------------------------------------------------------------------------
+    cout << '\n';
+
+    //<data tape, container type, 정렬 기준>
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    pq.push({abs(-5), -5});
+    pq.push({abs(-2), -2});
+    pq.push({abs(-9), -9});
+    pq.push({abs(10), 10});
+    pq.push({abs(1), 1});
+    pq.push({abs(2), 2});
+
+    while (!pq.empty())
+    {
+        cout << pq.top().second << " ";
+        pq.pop();
+    }
+    // 1 -2 2 -5 -9 10, 절댓값이 작은 순서대로 출력(절댓값이 같으면 수가 작은 순서대로)
+
     return 0;
 }
