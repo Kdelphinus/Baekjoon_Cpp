@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <tuple>
 
 using namespace std;
 
@@ -63,4 +64,15 @@ int main()
     auto i = 1 + 2; // 정수형끼리의 덧셈이므로 int로 설정
 
     return 0;
+
+    // -------------------------------------------------------------------------------------------------
+
+    /* Tuple */
+    // pair는 두 개의 값이라면 tuple은 세 개의 값을 저장
+
+    tuple<string, string, int> mj;
+    mj = make_tuple("Ko Myoung Jun", "1995-10-15", 27);
+    cout << get<0>(mj) << '\n' // Ko Myoung Jun
+         << get<1>(mj) << '\n' // 1995-10-15
+         << get<2>(mj);        // 27
 }
