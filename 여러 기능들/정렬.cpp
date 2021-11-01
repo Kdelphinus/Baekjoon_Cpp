@@ -1,6 +1,10 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <string>
+
+using namespace std;
+int tmp_idx;
 
 bool desc(int a, int b) // 내림차순을 위한 함수
 {
@@ -10,6 +14,11 @@ bool desc(int a, int b) // 내림차순을 위한 함수
 bool compare(std::pair<int, std::string> a, std::pair<int, std::string> b) // 가입순으로 정렬하게 만드는 함수
 {
     return a.first < b.first;
+}
+
+bool cmp(string a, string b) // tmp_idx번 인덱스에 있는 철자를 기준으로 오름차순
+{
+    return a[tmp_idx] == b[tmp_idx] ? a < b : a[tmp_idx] < b[tmp_idx];
 }
 
 int main()
@@ -41,5 +50,18 @@ int main()
     stable_sort(age_name.begin(), age_name.end(), compare); // 크기가 같은 원소는 상대적 위치가 바뀌지 않도록 한다
     for (int i = 0; i < num; i++)
         std::cout << age_name[i].first << " " << age_name[i].second << '\n';
+
+    //-----------------------------------------------------------------------------------
+
+    vector<string> a = {"car", "dog", "apple"};
+    tmp_idx = 1; // 1번 인덱스에 있는 철자를 기준으로 오름차순
+    sort(a.begin(), a.end(), cmp);
+    for (int i = 0; i < a.size(); i++)
+        cout << a[i] << ' ';
+    cout << '\n';
+    // car dog apple
+
+    //-----------------------------------------------------------------------------------
+
     return 0;
 }
