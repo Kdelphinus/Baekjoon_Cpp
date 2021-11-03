@@ -1,7 +1,7 @@
 /**
  * @file find the number that makes the rest one.cpp
  * @author Kdelphinus (delphinus@khu.ac.kr)
- * @brief Monthly Code Chalange Season 3
+ * @brief Monthly Code Challenge Season 3
  * @date 2021-11-03 18:54:49
  * 
  * @copyright Copyright (c) 2021
