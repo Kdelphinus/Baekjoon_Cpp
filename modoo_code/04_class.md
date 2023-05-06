@@ -1615,6 +1615,265 @@ int Marine::attack() const { return default_damage; }
 
 ## 4-6 클래스의 explicit과 mutable 키워드
 
+```c++
+#include <iostream>
 
+class MyString {
+  char* string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
 
+  int memory_capacity;
 
+ public:
+  // capacity 만큼 미리 할당함.
+  MyString(int capacity);
+
+  // 문자열로 부터 생성
+  MyString(const char* str);
+
+  // 복사 생성자
+  MyString(const MyString& str);
+
+  ~MyString();
+
+  int length() const;
+};
+
+MyString::MyString(int capacity) {
+  string_content = new char[capacity];
+  string_length = 0;
+  memory_capacity = capacity;
+  std::cout << "Capacity : " << capacity << std::endl;
+}
+
+MyString::MyString(const char* str) {
+  string_length = 0;
+  while (str[string_length++]) {
+  }
+
+  string_content = new char[string_length];
+  memory_capacity = string_length;
+
+  for (int i = 0; i != string_length; i++) string_content[i] = str[i];
+}
+MyString::MyString(const MyString& str) {
+  string_length = str.string_length;
+  string_content = new char[string_length];
+
+  for (int i = 0; i != string_length; i++)
+    string_content[i] = str.string_content[i];
+}
+MyString::~MyString() { delete[] string_content; }
+int MyString::length() const { return string_length; }
+
+int main() { MyString s(3); }
+```
+
+위 코드는 생성자가 `capacity` 만큼 공간을 미리 할당하며 객체를 생성한다.
+
+```c++
+void DoSomethingWithString(MyString s) {
+  // Do something...
+}
+
+DoSomethingWithString(MyString("abc"))
+```
+
+위와 같이 `MyString` 클래스를 인자로 받는 함수가 있다면 당연히 객체를 생성하여 인자로 전달할 것이다.
+그렇다면 `MyString` 를 명시적으로 생성하지 않고 문자열만 넣으면 어떻게 될까?
+
+```c++
+void DoSomethingWithString(MyString s) {
+  // Do something...
+}
+
+DoSomethingWithString("abc")
+```
+
+위 경우는 c++ 컴파일러가 어떻게 `"abc"` 를 `MyString` 으로 바꿀 수 있는지 방법을 찾는다.
+이번 경우는 생성자 중에서 문자열을 받는 생성자가 존재하기에 알아서 문자열을 통해 `MyString` 객체를 생성하여 인자로 넘겨준다.
+
+위와 같은 변환을 **암시적 변환(implicit conversion)** 이라고 한다.
+허나 암시적 변환이 항상 좋은 것은 아닌데 아래와 같이 숫자만 넣었을 때, 오류가 발생하길 기대하지만 int를 받는 생성자를 사용해 객체를 생성하여 인자로 넘겨준다.
+
+```c++
+DoSomethingWithString(3)
+```
+
+이렇게 사용자의 의도와 상관없이 암시적 변환이 일어나는 것을 막기 위해서 사용하는 키워드가 `explicit` 키워드다.
+
+```c++
+#include <iostream>
+
+class MyString {
+  char* string_content;  // 문자열 데이터를 가리키는 포인터
+  int string_length;     // 문자열 길이
+
+  int memory_capacity;
+
+ public:
+  // capacity 만큼 미리 할당함. (explicit 키워드에 주목)
+  explicit MyString(int capacity);
+
+  // 문자열로 부터 생성
+  MyString(const char* str);
+
+  // 복사 생성자
+  MyString(const MyString& str);
+
+  ~MyString();
+
+  int length() const;
+  int capacity() const;
+};
+
+// .. (생략) ..
+
+void DoSomethingWithString(MyString s) {
+  // Do something...
+}
+
+int main() {
+  DoSomethingWithString(3);  // ????
+}
+```
+
+위와 같이 `explicit` 키워드를 추가하고 다시 컴파일하면 오류가 발생한다.
+왜냐하면 int를 받는 생성자는 명시적(explicit)이기 때문에 암시적 변환에 사용하지 못하고 남은 생성자들은 int를 받지 않기 때문이다.
+
+또한 `explicit` 은 해당 생성자가 복사 생성자의 형태로 호출되는 것도 막는다.
+
+```c++
+MyString s = "abc";  // MyString s("abc")
+MyString s = 5;      // MyString s(5)
+```
+
+만약, `explicit` 키워드가 없다면 위와 같은 코드는 잘 작동할 것이다.
+왜냐하면 컴파일러가 알아서 적당한 생성자를 호출하기 때문이다.
+
+하지만 위 코드는 마치 s에 5를 대입하고 있는 것처럼 보인다. 실제로는 `capacity` 를 5로 설정하는 것인데도 말이다.
+이는 가독성을 해친다. 이때, 아까처럼 `explicit` 키워드를 사용하면 아래와 같이 명시적으로 생성자를 부를 때에만 허용되게 할 수 있다.
+
+```c++
+MyString s(5);   // 허용
+MyString s = 5;  // 컴파일 오류!
+```
+
+### mutable
+
+`const` 멤버 함수는 내부에서 멤버 변수들의 값을 바꾸는 것을 불가능하게 만들었다.
+하지만 만약에 멤버 변수를 `mutable` 로 선언했다면 const 함수에서도 선언된 변수의 값을 바꿀 수 있다.
+
+```c++
+#include <iostream>
+
+class A {
+  int data_;
+
+ public:
+  A(int data) : data_(data) {}
+  void DoSomething(int x) const {
+    data_ = x;  // 불가능!
+  }
+
+  void PrintData() const { std::cout << "data: " << data_ << std::endl; }
+};
+
+int main() {
+  A a(10);
+  a.DoSomething(3);
+  a.PrintData();
+}
+```
+
+위 코드는 const 함수에서 멤버 변수에 값을 대입하는 오류가 발생한다.
+하지만 `data_` 를 `mutable` 로 선언한다면 정상적으로 동작되는 것을 확인할 수 있다.
+
+```c++
+#include <iostream>
+
+class A {
+  mutable int data_;
+
+ public:
+  A(int data) : data_(data) {}
+  void DoSomething(int x) const {
+    data_ = x;  // 가능!
+  }
+
+  void PrintData() const { std::cout << "data: " << data_ << std::endl; }
+};
+
+int main() {
+  A a(10);
+  a.DoSomething(3);
+  a.PrintData();
+}
+```
+
+`mutable` 키워드는 자칫 불필요 해보일 수도 있다. `const` 를 안 쓰는 것과 동일해보이기 때문이다.
+허나 멤버 함수를 왜 `const` 로 선언하는지 다시 생각해보면 답이 나온다.
+
+`const` 로 선언한다는 의미는 이 함수가 객체의 내부 상태에 영향을 주지 않는 함수라는 의미다.
+대표적으로 읽기 작업을 수행하는 함수들이 있다.
+
+대부분의 경우 의미상 상수 작업을 하는 경우, 실제로도 상수 작업을 하지만 꼭 그렇지는 않단.
+예를 들어 아래와 같이 서버 프로그램을 만든다고 가정해보자.
+
+```c++
+class Server {
+  // .... (생략) ....
+
+  // 이 함수는 데이터베이스에서 user_id 에 해당하는 유저 정보를 읽어서 반환한다.
+  User GetUserInfo(const int user_id) const {
+    // 1. 데이터베이스에 user_id 를 검색
+    Data user_data = Database.find(user_id);
+
+    // 2. 리턴된 정보로 User 객체 생성
+    return User(user_data);
+  }
+};
+```
+
+위에 있는 `GetUserInfo` 함수는 입력 받은 `user_id` 로 데이터베이스에서 해당 유저를 조회해서 그 유저의 정보를 리턴하는 함수다.
+이러한 동작에는 무언가를 수정하는 작업이 없기 때문에 `const` 함수로 선언된다.
+
+그런데 대개 데이터베이스에 요청하고 데이터를 받아오는 작업은 꽤 오랜 시간을 소요한다.
+그렇기에 보통은 메모레에 캐쉬를 만들어서 자주 요청되는 데이터를 굳이 데이터베이스까지 가지 않고 메모리에서 빠르게 조회할 수 있도록 만들어준다.
+
+물론 캐쉬는 데이터베이스만큼 크지 않아서 일부 유저의 데이터만 있다.
+그렇기에 먼저 캐쉬에서 정보를 찾고 만약에 없다면(이를 캐쉬 미스라고 한다.) 데이터베이스에 직접 요청한다.
+
+> 보통 한 번 요청된 정보는 계속해서 요청될 확률이 높기 때문에 캐쉬에 넣게 된다. 이때 캐쉬 크기는 한정적이기에 이전에 오래된 캐쉬부터 지우게 된다.
+
+그렇기에 이를 구현한다면 다음과 같은 함수과 될 것이다.
+
+```c++
+class Server {
+  // .... (생략) ....
+
+  Cache cache; // 캐쉬!
+
+  // 이 함수는 데이터베이스에서 user_id 에 해당하는 유저 정보를 읽어서 반환한다.
+  User GetUserInfo(const int user_id) const {
+    // 1. 캐쉬에서 user_id 를 검색
+    Data user_data = cache.find(user_id);
+
+    // 2. 하지만 캐쉬에 데이터가 없다면 데이터베이스에 요청
+    if (!user_data) {
+      user_data = Database.find(user_id);
+
+      // 그 후 캐쉬에 user_data 등록
+      cache.update(user_id, user_data); // <-- 불가능
+    }
+
+    // 3. 리턴된 정보로 User 객체 생성
+    return User(user_data);
+  }
+};
+```
+
+그러나 여기서 문제는 `GetUserInfo` 함수가 `const` 라는 것이다.
+그렇기에 캐쉬를 업데이트하는 작업을 수행할 수 없다.
+그렇다고 `const` 를 뗄 수도 없는 것이 함수를 사용하는 입장에선 `GetUserInfo` 함수는 당연히 `const` 이기 때문이다.
+이럴 때, `Cache` 를 `mutable` 로 선언해버린다.
