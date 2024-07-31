@@ -68,4 +68,14 @@ add_executable(Cpp_study
         "Baekjoon/solve_step_by_step/12. 브루트 포스/3. 수학은 비대면강의입니다.cpp"
         "Baekjoon/solve_step_by_step/12. 브루트 포스/4. 체스판 다시 칠하기.cpp"
         "Baekjoon/solve_step_by_step/12. 브루트 포스/5. 영화감독 숌.cpp"
-        "Baekjoon/solve_step_by_step/12. 브루트 포스/6. 설탕 배달.cpp")
+        "Baekjoon/solve_step_by_step/12. 브루트 포스/6. 설탕 배달.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/01. 수 정렬하기.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/02. 대표값2.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/03. 커트라인.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/04. 수 정렬하기 2.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/05. 수 정렬하기 3.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/06. 소트인사이드.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/07. 좌표 정렬하기.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/09. 단어 정렬.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/10. 나이순 정렬.cpp"
+        "Baekjoon/solve_step_by_step/13. 정렬/11. 좌표 압축.cpp")
