@@ -78,4 +78,6 @@ add_executable(Cpp_study
         "Baekjoon/solve_step_by_step/13. 정렬/07. 좌표 정렬하기.cpp"
         "Baekjoon/solve_step_by_step/13. 정렬/09. 단어 정렬.cpp"
         "Baekjoon/solve_step_by_step/13. 정렬/10. 나이순 정렬.cpp"
-        "Baekjoon/solve_step_by_step/13. 정렬/11. 좌표 압축.cpp")
+        "Baekjoon/solve_step_by_step/13. 정렬/11. 좌표 압축.cpp"
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/01. 숫자 카드.cpp"
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/02. 문자열 집합.cpp")
