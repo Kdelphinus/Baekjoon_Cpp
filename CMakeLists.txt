@@ -80,4 +80,10 @@ add_executable(Cpp_study
         "Baekjoon/solve_step_by_step/13. 정렬/10. 나이순 정렬.cpp"
         "Baekjoon/solve_step_by_step/13. 정렬/11. 좌표 압축.cpp"
         "Baekjoon/solve_step_by_step/14. 집합과 맵/01. 숫자 카드.cpp"
-        "Baekjoon/solve_step_by_step/14. 집합과 맵/02. 문자열 집합.cpp")
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/02. 문자열 집합.cpp"
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/03. 회사에 있는 사람.cpp"
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/04. 나는야 포켓몬 마스터 이다솜.cpp"
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/05. 숫자 카드 2.cpp"
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/06. 듣보잡.cpp"
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/07. 대칭 차집합.cpp"
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/08. 서로 다른 부분 문자열의 개수.cpp")
