@@ -86,4 +86,9 @@ add_executable(Cpp_study
         "Baekjoon/solve_step_by_step/14. 집합과 맵/05. 숫자 카드 2.cpp"
         "Baekjoon/solve_step_by_step/14. 집합과 맵/06. 듣보잡.cpp"
         "Baekjoon/solve_step_by_step/14. 집합과 맵/07. 대칭 차집합.cpp"
-        "Baekjoon/solve_step_by_step/14. 집합과 맵/08. 서로 다른 부분 문자열의 개수.cpp")
+        "Baekjoon/solve_step_by_step/14. 집합과 맵/08. 서로 다른 부분 문자열의 개수.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/01. 스택 2.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/02. 제로.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/03. 괄호.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/04. 균형잡힌 세상.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/05. 도키도키 간식드리미.cpp")
