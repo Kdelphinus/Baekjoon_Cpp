@@ -91,4 +91,10 @@ add_executable(Cpp_study
         "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/02. 제로.cpp"
         "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/03. 괄호.cpp"
         "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/04. 균형잡힌 세상.cpp"
-        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/05. 도키도키 간식드리미.cpp")
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/05. 도키도키 간식드리미.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/06. 큐 2.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/07. 카드2.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/08. 요세푸스 문제 0.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/09. 덱 2.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/10. 풍선 터뜨리기.cpp"
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/11. queuestack.cpp")
