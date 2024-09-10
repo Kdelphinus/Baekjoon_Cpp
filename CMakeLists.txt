@@ -97,4 +97,7 @@ add_executable(Cpp_study
         "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/08. 요세푸스 문제 0.cpp"
         "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/09. 덱 2.cpp"
         "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/10. 풍선 터뜨리기.cpp"
-        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/11. queuestack.cpp")
+        "Baekjoon/solve_step_by_step/16. 스택, 큐, 덱 단계/11. queuestack.cpp"
+        "Baekjoon/solve_step_by_step/23. 동적 계획법 1/01. 알고리즘 수업 - 피보나치 수 1.cpp"
+        "Baekjoon/solve_step_by_step/23. 동적 계획법 1/02. 신나는 함수 실행.cpp"
+        "Baekjoon/solve_step_by_step/31. 그래프와 순회/05. 바이러스.cpp")
